@@ -1,120 +1,162 @@
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
-import { TrendingUp, Linkedin, Instagram, Facebook, Twitter } from 'lucide-react';
+import { TrendingUp, Linkedin, Instagram, Facebook, Twitter, Mail, ExternalLink } from 'lucide-react';
 
 const Footer = () => {
   const { isDark } = useTheme();
 
+  const footerLinks = {
+    platform: [
+      { label: 'Dashboard', path: '/dashboard' },
+      { label: 'Companies', path: '/companies' },
+      { label: 'Predictions', path: '/predictions' },
+      { label: 'AI Chatbot', path: '/chatbot' },
+    ],
+    resources: [
+      { label: 'Wiki', path: '/wiki' },
+      { label: 'Brokers', path: '/brokers' },
+      { label: 'Dividend Calendar', path: '/dividend-calendar' },
+      { label: 'Document Analyzer', path: '/document-analyzer' },
+    ],
+    external: [
+      { label: 'CSE Website', href: 'https://www.cse.lk' },
+      { label: 'SEC Sri Lanka', href: 'https://www.sec.gov.lk' },
+    ],
+  };
+
+  const socialLinks = [
+    { Icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { Icon: Twitter, href: '#', label: 'Twitter' },
+    { Icon: Facebook, href: '#', label: 'Facebook' },
+    { Icon: Instagram, href: '#', label: 'Instagram' },
+  ];
+
   return (
-    <footer
-      className={`py-12 px-6 md:px-20 ${
-        isDark
-          ? 'bg-[#0f0518] border-t border-purple-900/50'
-          : 'bg-gray-100 border-t border-gray-200'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8 items-center">
-          {/* Logo & Description */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-8 h-8 text-accent-cyan" />
-              <span className="text-2xl font-bold tracking-wide text-accent-cyan">
+    <footer className={`${isDark ? 'bg-[#060912]' : 'bg-gray-50'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Main Footer Content */}
+        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-flex items-center gap-2 mb-4">
+              <TrendingUp className="w-7 h-7 text-cyan-400" />
+              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
                 CSE INSIGHT
               </span>
-            </div>
-            <p
-              className={`max-w-md text-sm leading-relaxed ${
-                isDark ? 'text-purple-200' : 'text-gray-600'
-              }`}
-            >
-              AI-powered market intelligence platform for smart investors and
-              traders in the Colombo Stock Exchange.
+            </Link>
+            <p className={`text-sm leading-relaxed mb-6 max-w-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              AI-powered market intelligence platform helping Sri Lankan investors make
+              smarter decisions in the Colombo Stock Exchange.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div className="flex flex-col items-center gap-4">
-            <h4
-              className={`font-semibold ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Quick Links
-            </h4>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <Link
-                to="/wiki"
-                className={`transition-colors ${
-                  isDark
-                    ? 'text-purple-200 hover:text-white'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Wiki
-              </Link>
-              <Link
-                to="/brokers"
-                className={`transition-colors ${
-                  isDark
-                    ? 'text-purple-200 hover:text-white'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Brokers
-              </Link>
-              <a
-                href="https://www.cse.lk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`transition-colors ${
-                  isDark
-                    ? 'text-purple-200 hover:text-white'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                CSE Website
-              </a>
+            {/* Social Links */}
+            <div className="flex items-center gap-2">
+              {socialLinks.map(({ Icon, href, label }, i) => (
+                <a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={`p-2.5 rounded-lg transition-all duration-200 ${
+                    isDark
+                      ? 'text-gray-500 hover:text-cyan-400 hover:bg-white/5'
+                      : 'text-gray-400 hover:text-cyan-500 hover:bg-gray-100'
+                  }`}
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center md:justify-end gap-4">
-            {[
-              { Icon: Linkedin, href: '#' },
-              { Icon: Instagram, href: '#' },
-              { Icon: Facebook, href: '#' },
-              { Icon: Twitter, href: '#' },
-            ].map(({ Icon, href }, i) => (
-              <a
-                key={i}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`p-2 rounded-full transition-colors ${
-                  isDark
-                    ? 'text-gray-500 hover:text-accent-cyan hover:bg-purple-800/50'
-                    : 'text-gray-400 hover:text-accent-cyan hover:bg-gray-200'
-                }`}
-              >
-                <Icon size={24} />
-              </a>
-            ))}
+          {/* Platform Links */}
+          <div>
+            <h4 className={`text-sm font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Platform
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.platform.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.path}
+                    className={`text-sm transition-colors ${
+                      isDark
+                        ? 'text-gray-400 hover:text-white'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Links */}
+          <div>
+            <h4 className={`text-sm font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Resources
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.resources.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.path}
+                    className={`text-sm transition-colors ${
+                      isDark
+                        ? 'text-gray-400 hover:text-white'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* External Links */}
+          <div>
+            <h4 className={`text-sm font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              External
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.external.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-1.5 text-sm transition-colors ${
+                      isDark
+                        ? 'text-gray-400 hover:text-white'
+                        : 'text-gray-600 hover:text-gray-900'
+                    }`}
+                  >
+                    {link.label}
+                    <ExternalLink size={12} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div
-          className={`mt-8 pt-8 border-t text-center text-sm ${
-            isDark
-              ? 'border-purple-900/50 text-purple-300'
-              : 'border-gray-200 text-gray-500'
-          }`}
-        >
-          <p>&copy; {new Date().getFullYear()} CSE Insight. All rights reserved.</p>
-          <p className="mt-2">
-            Made with care for Sri Lankan investors
-          </p>
+        <div className={`py-6 border-t ${isDark ? 'border-white/5' : 'border-gray-200'}`}>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+              &copy; {new Date().getFullYear()} CSE Insight. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#" className={`text-sm transition-colors ${isDark ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-gray-900'}`}>
+                Privacy Policy
+              </a>
+              <a href="#" className={`text-sm transition-colors ${isDark ? 'text-gray-500 hover:text-white' : 'text-gray-500 hover:text-gray-900'}`}>
+                Terms of Service
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

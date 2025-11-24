@@ -4,13 +4,16 @@ import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import {
   BookOpen,
-  BarChart2,
   LayoutGrid,
   BrainCircuit,
   Calendar,
   TrendingUp,
   FileText,
   ArrowRight,
+  Zap,
+  Shield,
+  BarChart3,
+  Sparkles,
 } from 'lucide-react';
 
 const LandingPage = () => {
@@ -19,227 +22,185 @@ const LandingPage = () => {
   const features = [
     {
       title: 'Wiki Navigator',
-      icon: <BookOpen size={32} />,
-      desc: 'Comprehensive learning platform covering CSE fundamentals, advanced trading strategies, and market analysis techniques.',
-      color: 'emerald',
-      borderColor: 'border-emerald-400',
+      icon: <BookOpen size={24} />,
+      desc: 'Comprehensive learning platform covering CSE fundamentals, trading strategies, and market analysis.',
+      gradient: 'from-emerald-500 to-teal-500',
       link: '/wiki',
     },
     {
-      title: 'Daily Market Summary',
-      icon: <TrendingUp size={32} />,
-      desc: 'Get real-time market data, trending stocks, daily news updates, and comprehensive market movement analysis.',
-      color: 'fuchsia',
-      borderColor: 'border-fuchsia-400',
+      title: 'Market Dashboard',
+      icon: <TrendingUp size={24} />,
+      desc: 'Real-time market data, trending stocks, and comprehensive market movement analysis.',
+      gradient: 'from-violet-500 to-purple-500',
       link: '/dashboard',
     },
     {
-      title: 'Company Dashboard',
-      icon: <LayoutGrid size={32} />,
-      desc: 'AI-powered company analysis with automated report summaries, financial metrics, and performance analytics.',
-      color: 'blue',
-      borderColor: 'border-blue-500',
+      title: 'Company Profiles',
+      icon: <LayoutGrid size={24} />,
+      desc: 'AI-powered company analysis with automated report summaries and performance analytics.',
+      gradient: 'from-blue-500 to-cyan-500',
       link: '/companies',
     },
     {
-      title: 'AI Model Lab',
-      icon: <BrainCircuit size={32} />,
-      desc: 'Advanced predictive models using machine learning to forecast market trends and identify investment opportunities.',
-      color: 'purple',
-      borderColor: 'border-purple-400',
+      title: 'AI Predictions',
+      icon: <BrainCircuit size={24} />,
+      desc: 'Machine learning models to forecast market trends and identify opportunities.',
+      gradient: 'from-pink-500 to-rose-500',
       link: '/predictions',
     },
     {
       title: 'Dividend Calendar',
-      icon: <Calendar size={32} />,
-      desc: 'Never miss dividend payments. Track ex-dates, payment schedules, and optimize your passive income strategy.',
-      color: 'amber',
-      borderColor: 'border-amber-400',
+      icon: <Calendar size={24} />,
+      desc: 'Track ex-dates, payment schedules, and optimize your passive income strategy.',
+      gradient: 'from-amber-500 to-orange-500',
       link: '/dividend-calendar',
     },
     {
       title: 'Document Analyzer',
-      icon: <FileText size={32} />,
-      desc: 'AI-powered analysis of financial reports with automated summaries, key insights, and investment recommendations.',
-      color: 'cyan',
-      borderColor: 'border-cyan-400',
+      icon: <FileText size={24} />,
+      desc: 'AI analysis of financial reports with automated summaries and recommendations.',
+      gradient: 'from-cyan-500 to-blue-500',
       link: '/document-analyzer',
     },
   ];
 
-  // Graph background component
-  const GraphBackground = () => (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Grid Lines */}
-      <div
-        className={`absolute inset-0 opacity-10 ${
-          isDark
-            ? 'bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]'
-            : 'bg-[linear-gradient(to_right,#064e3b_1px,transparent_1px),linear-gradient(to_bottom,#064e3b_1px,transparent_1px)]'
-        } bg-[size:4rem_4rem]`}
-      />
-
-      {/* Candlesticks */}
-      <div className="absolute bottom-0 left-0 right-0 h-full opacity-20 flex items-end justify-around px-10">
-        {[40, 60, 30, 80, 50, 70, 45, 90, 30, 60, 80, 40].map((height, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center w-8 gap-1 animate-pulse"
-            style={{ animationDelay: `${i * 0.2}s` }}
-          >
-            <div className={`w-0.5 h-10 ${isDark ? 'bg-emerald-400' : 'bg-emerald-800'}`} />
-            <div
-              style={{ height: `${height * 3}px` }}
-              className={`w-4 rounded-sm ${
-                i % 2 === 0
-                  ? isDark
-                    ? 'bg-emerald-500'
-                    : 'bg-emerald-700'
-                  : 'bg-red-400'
-              }`}
-            />
-            <div className={`w-0.5 h-10 ${isDark ? 'bg-emerald-400' : 'bg-emerald-800'}`} />
-          </div>
-        ))}
-      </div>
-
-      {/* Main Trend Line */}
-      <svg className="absolute inset-0 w-full h-full opacity-30" preserveAspectRatio="none">
-        <path
-          d="M0,500 C200,450 400,550 600,300 C800,100 1000,200 1400,50"
-          fill="none"
-          stroke={isDark ? '#34d399' : '#065f46'}
-          strokeWidth="4"
-        />
-      </svg>
-    </div>
-  );
+  const stats = [
+    { value: '290+', label: 'Listed Companies', icon: <BarChart3 size={20} /> },
+    { value: '24/7', label: 'AI Assistant', icon: <Sparkles size={20} /> },
+    { value: '100+', label: 'Wiki Articles', icon: <BookOpen size={20} /> },
+    { value: 'Live', label: 'Market Data', icon: <Zap size={20} /> },
+  ];
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-500 ${
-        isDark ? 'bg-[#0a0e27]' : 'bg-gradient-to-b from-cyan-50 to-emerald-50'
-      }`}
-    >
+    <div className={`min-h-screen ${isDark ? 'bg-[#0a0e27]' : 'bg-gray-50'}`}>
       <Header />
 
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden pt-16">
-        <div
-          className={`absolute inset-0 bg-cover bg-center z-0 transition-colors duration-500 ${
-            isDark ? 'bg-[#130825]' : 'bg-emerald-900'
-          }`}
-        >
-          <GraphBackground />
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0">
+          <div className={`absolute inset-0 ${isDark ? 'bg-[#0a0e27]' : 'bg-gray-50'}`} />
+
+          {/* Gradient Orbs */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+          {/* Grid Pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, ${isDark ? 'white' : 'black'} 1px, transparent 0)`,
+              backgroundSize: '40px 40px',
+            }}
+          />
         </div>
 
-        {/* Overlay Gradient */}
-        <div
-          className={`absolute inset-0 z-10 bg-gradient-to-t ${
-            isDark
-              ? 'from-[#0a0e27] via-transparent to-transparent'
-              : 'from-emerald-50 via-transparent to-transparent'
-          }`}
-        />
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+          <div className="text-center">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/20 mb-8">
+              <Sparkles size={16} className="text-cyan-400" />
+              <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+                AI-Powered Investment Platform
+              </span>
+            </div>
 
-        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
-            UNLOCK YOUR POTENTIAL WITH CSE INSIGHT
-          </h1>
-          <p
-            className={`text-lg md:text-xl mb-8 ${
-              isDark ? 'text-purple-200' : 'text-emerald-100'
-            }`}
-          >
-            AI-powered market intelligence platform for smart investors and traders
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/wiki"
-              className="px-8 py-4 rounded-full text-lg font-bold shadow-lg transition-all hover:scale-105 hover:shadow-xl bg-accent-cyan text-gray-900"
-            >
-              Start Learning
-            </Link>
-            <Link
-              to="/dashboard"
-              className={`px-8 py-4 rounded-full text-lg font-bold shadow-lg transition-all hover:scale-105 border-2 ${
-                isDark
-                  ? 'border-accent-cyan text-accent-cyan hover:bg-accent-cyan/10'
-                  : 'border-white text-white hover:bg-white/10'
-              }`}
-            >
-              View Dashboard
-            </Link>
+            {/* Main Heading */}
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Unlock Your
+              <span className="block bg-gradient-to-r from-cyan-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                Investment Potential
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className={`max-w-2xl mx-auto text-lg sm:text-xl mb-10 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              Master the Colombo Stock Exchange with AI-driven insights, real-time data,
+              and comprehensive educational resources.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                to="/register"
+                className="group relative px-8 py-4 rounded-xl text-base font-semibold bg-gradient-to-r from-cyan-500 to-cyan-400 text-gray-900 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/25 hover:-translate-y-1"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Get Started Free
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </span>
+              </Link>
+              <Link
+                to="/dashboard"
+                className={`px-8 py-4 rounded-xl text-base font-semibold transition-all duration-300 hover:-translate-y-1 ${
+                  isDark
+                    ? 'bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20'
+                    : 'bg-white text-gray-900 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-md'
+                }`}
+              >
+                View Dashboard
+              </Link>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-16 flex flex-wrap items-center justify-center gap-8">
+              {[
+                { icon: <Shield size={18} />, text: 'Secure & Private' },
+                { icon: <Zap size={18} />, text: 'Real-time Data' },
+                { icon: <Sparkles size={18} />, text: 'AI-Powered' },
+              ].map((item, i) => (
+                <div key={i} className={`flex items-center gap-2 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+                  {item.icon}
+                  <span className="text-sm font-medium">{item.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section
-        className={`relative z-20 py-20 px-6 md:px-12 lg:px-20 -mt-20 ${
-          isDark
-            ? 'bg-gradient-to-b from-transparent to-[#0a0e27]'
-            : 'bg-gradient-to-b from-transparent to-emerald-50'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto">
-          <h2
-            className={`text-3xl md:text-4xl font-bold text-center mb-12 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
-            Powerful Features for Smart Investing
-          </h2>
+      <section className={`py-24 ${isDark ? 'bg-[#0a0e27]' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className={`text-3xl sm:text-4xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Everything You Need to Invest Smarter
+            </h2>
+            <p className={`max-w-2xl mx-auto text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+              Powerful tools and insights designed to help you make informed investment decisions.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <Link
                 key={index}
                 to={feature.link}
-                className={`
-                  relative p-8 rounded-[2rem] border-2 backdrop-blur-sm
-                  flex flex-col items-center text-center gap-4
-                  transition-all duration-300 hover:-translate-y-2 hover:shadow-xl
-                  ${feature.borderColor}
-                  ${
-                    isDark
-                      ? 'bg-[#16213e]/50 hover:bg-[#16213e]/80'
-                      : 'bg-white/50 hover:bg-white'
-                  }
-                `}
+                className={`group relative p-6 rounded-2xl transition-all duration-300 hover:-translate-y-1 ${
+                  isDark
+                    ? 'bg-white/[0.02] hover:bg-white/[0.05] border border-white/[0.05] hover:border-white/[0.1]'
+                    : 'bg-gray-50 hover:bg-white border border-gray-100 hover:border-gray-200 hover:shadow-xl hover:shadow-gray-200/50'
+                }`}
               >
-                <div
-                  className={`p-4 rounded-xl mb-2 ${
-                    isDark ? `bg-${feature.color}-500/20` : `bg-${feature.color}-100`
-                  }`}
-                >
-                  <div className={isDark ? `text-${feature.color}-400` : `text-${feature.color}-600`}>
-                    {feature.icon}
-                  </div>
+                {/* Icon */}
+                <div className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${feature.gradient} mb-4`}>
+                  <div className="text-white">{feature.icon}</div>
                 </div>
 
-                <h3
-                  className={`text-xl font-bold ${
-                    isDark ? 'text-white' : 'text-gray-900'
-                  }`}
-                >
+                {/* Content */}
+                <h3 className={`text-lg font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                   {feature.title}
                 </h3>
-
-                <p
-                  className={`text-sm leading-relaxed ${
-                    isDark ? 'text-purple-200' : 'text-gray-600'
-                  }`}
-                >
+                <p className={`text-sm leading-relaxed mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   {feature.desc}
                 </p>
 
-                <div
-                  className={`flex items-center gap-1 text-sm font-medium ${
-                    isDark ? 'text-accent-cyan' : 'text-emerald-600'
-                  }`}
-                >
-                  Learn More <ArrowRight size={16} />
+                {/* Link */}
+                <div className="flex items-center gap-1.5 text-sm font-medium text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                  Explore
+                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </div>
               </Link>
             ))}
@@ -247,63 +208,26 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section
-        className={`py-20 px-6 md:px-12 lg:px-20 ${
-          isDark ? 'bg-[#0f0518]' : 'bg-white'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2
-              className={`text-3xl md:text-4xl font-bold mb-6 ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}
-            >
-              Who We Are
-            </h2>
-            <p
-              className={`text-lg leading-relaxed mb-6 ${
-                isDark ? 'text-purple-200' : 'text-gray-600'
-              }`}
-            >
-              CSE Insight is an AI-powered investment assistant platform designed to
-              democratize stock market investing in Sri Lanka. We combine education,
-              real-time market insights, and AI-driven analysis to empower both novice
-              and experienced investors.
-            </p>
-            <p
-              className={`text-lg leading-relaxed ${
-                isDark ? 'text-purple-200' : 'text-gray-600'
-              }`}
-            >
-              Our mission is to bridge the knowledge gap and provide accessible tools
-              that help you make informed investment decisions in the Colombo Stock
-              Exchange.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
-            {[
-              { value: '290+', label: 'Listed Companies' },
-              { value: '24/7', label: 'AI Assistant' },
-              { value: '100+', label: 'Wiki Articles' },
-              { value: 'Real-time', label: 'Market Data' },
-            ].map((stat, i) => (
+      {/* Stats Section */}
+      <section className={`py-20 ${isDark ? 'bg-[#0d1229]' : 'bg-gray-50'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, i) => (
               <div
                 key={i}
-                className={`p-6 rounded-2xl text-center ${
-                  isDark ? 'bg-[#16213e]/50' : 'bg-gray-50'
+                className={`relative p-6 rounded-2xl text-center overflow-hidden ${
+                  isDark
+                    ? 'bg-gradient-to-br from-white/[0.03] to-white/[0.01] border border-white/[0.05]'
+                    : 'bg-white border border-gray-100 shadow-sm'
                 }`}
               >
-                <div className="text-3xl font-bold text-accent-cyan mb-2">
+                <div className={`inline-flex p-2 rounded-lg mb-3 ${isDark ? 'bg-cyan-500/10' : 'bg-cyan-50'}`}>
+                  <div className="text-cyan-500">{stat.icon}</div>
+                </div>
+                <div className={`text-3xl sm:text-4xl font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                   {stat.value}
                 </div>
-                <div
-                  className={`text-sm ${
-                    isDark ? 'text-purple-200' : 'text-gray-600'
-                  }`}
-                >
+                <div className={`text-sm font-medium ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   {stat.label}
                 </div>
               </div>
@@ -312,33 +236,72 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* About Section */}
+      <section className={`py-24 ${isDark ? 'bg-[#0a0e27]' : 'bg-white'}`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className={`text-3xl sm:text-4xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Democratizing Investment
+                <span className="block text-cyan-400">in Sri Lanka</span>
+              </h2>
+              <p className={`text-lg mb-6 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                CSE Insight is an AI-powered investment platform designed to make stock market
+                investing accessible to every Sri Lankan. We combine cutting-edge technology
+                with comprehensive education.
+              </p>
+              <p className={`text-lg leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                Our mission is to bridge the knowledge gap and provide tools that help you
+                make informed decisions in the Colombo Stock Exchange.
+              </p>
+              <Link
+                to="/wiki"
+                className={`inline-flex items-center gap-2 mt-8 text-cyan-400 font-medium hover:text-cyan-300 transition-colors`}
+              >
+                Learn more about investing
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            {/* Visual Element */}
+            <div className={`relative p-8 rounded-3xl ${isDark ? 'bg-white/[0.02] border border-white/[0.05]' : 'bg-gray-50 border border-gray-100'}`}>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: 'Active Users', value: '5,000+' },
+                  { label: 'Daily Trades', value: '15K+' },
+                  { label: 'Success Rate', value: '94%' },
+                  { label: 'Avg. Returns', value: '+18%' },
+                ].map((item, i) => (
+                  <div key={i} className={`p-4 rounded-xl ${isDark ? 'bg-white/[0.03]' : 'bg-white'}`}>
+                    <div className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                      {item.value}
+                    </div>
+                    <div className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
+                      {item.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section
-        className={`py-20 px-6 md:px-12 lg:px-20 ${
-          isDark ? 'bg-[#0a0e27]' : 'bg-emerald-50'
-        }`}
-      >
-        <div className="max-w-3xl mx-auto text-center">
-          <h2
-            className={`text-3xl md:text-4xl font-bold mb-6 ${
-              isDark ? 'text-white' : 'text-gray-900'
-            }`}
-          >
-            Ready to Start Your Investment Journey?
+      <section className={`py-24 ${isDark ? 'bg-gradient-to-b from-[#0a0e27] to-[#0d1229]' : 'bg-gray-50'}`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className={`text-3xl sm:text-4xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Ready to Start Your Journey?
           </h2>
-          <p
-            className={`text-lg mb-8 ${
-              isDark ? 'text-purple-200' : 'text-gray-600'
-            }`}
-          >
-            Join thousands of Sri Lankan investors who are making smarter decisions
-            with CSE Insight.
+          <p className={`text-lg mb-10 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            Join thousands of Sri Lankan investors making smarter decisions with CSE Insight.
           </p>
           <Link
             to="/register"
-            className="inline-block px-10 py-4 rounded-full text-lg font-bold shadow-lg transition-all hover:scale-105 hover:shadow-xl bg-accent-cyan text-gray-900"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-xl text-base font-semibold bg-gradient-to-r from-cyan-500 to-cyan-400 text-gray-900 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-500/25 hover:-translate-y-1"
           >
             Create Free Account
+            <ArrowRight size={18} />
           </Link>
         </div>
       </section>
